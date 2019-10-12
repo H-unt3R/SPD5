@@ -1,0 +1,79 @@
+{% extends 'base_generic.html' %}
+
+
+{% block javascript %}
+{% load static %}
+<script src="{% static 'js/ajax.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card-box">
+                        <h6>Personal info</h6><br/>
+                        {% csrf_token %}
+                        {{ form.user }}
+                        <div class="form-group">
+                            {{ form.first_name }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.last_name }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="card-box">
+                        <h6>Other</h6><br/>
+                        <div class="form-group">
+                            {{ form.picture }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.website }}
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-box">
+                        <h6>Location</h6><br/>
+                        <div class="form-group">
+                            {{ form.country }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.city }}
+                        </div>
+                    </div>
+                    <div class="card-box">
+                        <h6>Course info</h6><br/>
+                        <div class="form-group">
+                            {{ form.program }}
+                        </div>
+                        <div class="form-group position-relative">
+                            <!-- <div class="block"></div> -->
+                            {{ form.course }}<br/>
+                            <small class="faded">Hold 'Control', or 'Command' on Mac and select</small>
+                        </div>
+                    </div>
+                    {% if user.is_superuser %}
+                    <div class="no-shade card-box">
+                        <div class="form-check">
+                            {{ form.is_super }} 
+                            <label class="form-check-label" for="id_is_super">
+                                Superuser
+                            </label>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- <div class="col-md-6"> -->
+                    <div class="empty-box">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a class="btn btn-danger" href="{% url 'student_detail' pk=student.pk%}">Back</a>
+                    </div>
+                <!-- </div> -->
+                </div>
+            </div>
+        </form>
+</div>
+{% endblock %}

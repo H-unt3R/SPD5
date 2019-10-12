@@ -1,0 +1,43 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+	{% if years %}
+	<div class="row">
+		{% for year in years %}
+		<div class="col-md-4 col-sm-12 col-xs-12">
+			<div class="card-box">
+			<h6>{{ year.program__name }}</h6>
+			<span class="faded">Level: </span>{{ year.level }}<br>
+			<span class="faded">Year: </span>{{ year.year }}<br>
+			<span class="faded">Semester: </span>{{ year.semester }} <br>
+			<span class="faded">Courses: </span>{{ year.program__count }} <br><br>
+			<a href="#" class="btn-sm full-width btn btn-primary">Edit</a>
+			<!-- <div class="overflow-auto">
+				<ul class="list-unstyled">
+				{% for course in year.course.all %}
+					<li><a href="{% url 'course_detail' pk=course.pk %}">{{ course }}</a></li>
+				{% endfor %}
+				</ul>
+			</div> -->
+			</div>
+		</div>
+		{% endfor %}
+		
+	</div>
+	{% else %}
+	<div class="row justify-content-center">
+		<div class="col-md-6 col-xs-12">
+			<div class="card-box">
+				<h6>No added years</h6>
+				<p class="faded">Nuk keni zgjedhur lendet per nje semester</p>
+			</div>
+			<div class="empty-box text-center">
+				<a href="{% url 'year_add' %}" class="btn btn-primary">Zgjedh lendet</a>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

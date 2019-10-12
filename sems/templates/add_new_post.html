@@ -1,0 +1,33 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-xs-12">
+            <form method="post" enctype="multipart/form-data">
+                <div class="card-box">
+                    <h6>Add new post</h6><br/>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        Title<br/>
+                        {{ form.title }}
+                    </div>
+                    <div class="form-group">
+                        Content<br/>
+                        {{ form.content|safe }}
+                    </div>
+                    <div class="form-group">
+                        Cover Picture<br/>
+                        {{ form.picture }}
+                    </div>
+                </div>
+                <div class="empty-box">
+                    <button type="submit" class="btn btn-primary">Add Post</button>
+                    <a class="btn btn-danger" href="{% url 'home' %}">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

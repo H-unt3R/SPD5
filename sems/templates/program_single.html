@@ -1,0 +1,71 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="no-shade card-box">
+        <h4>{{ program.name }}</h4>
+        {% if program.summary %}
+        <p>{{ program.summary }}</p>
+        {% endif %}
+    </div>
+    <div class="shadow-box">
+        {% if courses %}
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Course name</th>
+                    <th class="text-right">Credits</th>
+                    <th></th>
+                </tr>
+            </thead>
+        {% for course in courses %}
+            <tr>
+                <td style="max-width: 20px"><b>{{ course.get_type }}</b></td>
+                <td><a href="{% url 'course_detail' pk=course.pk %}">{{ course }}</a></td>
+                <td class="text-right"><b>{{ course.credits }}</b></td>
+                {% if user.is_superuser %}
+                    <td style="max-width: 50px" class="text-right">
+                        <a title="Edit" href="{% url 'course_edit' pk=course.pk %}" class="label sm-label"><i class="fas fa-pencil-alt"></i></a>
+                        <span class="with-popup">
+                            <div class="popup p-delete">
+                                <p>Are you sure you want to remove this course?</p>
+                                <a href="{% url 'course_delete' p_pk=program.pk pk=course.pk %}">Delete</a>
+                            </div>
+                            <a title="Delete" class="label sm-label"><i class="fas fa-times"></i></a>
+                        </span>
+                    </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+        {% else %}
+        <p class="text-center"><i class="material-icons">sentiment_dissatisfied</i><br/>No courses added</p>
+        {% if user.is_superuser %}
+        <p class="text-center lead">Start by <a href="{% url 'course_add' pk=program.pk %}">adding new course</a></p>
+        {% endif %}
+        {% endif %}
+
+        {% if courses.paginator.page_range|length > 1 %}
+        <br>
+        <div class="pagination">
+            <a href="?page=1">&laquo;</a>
+            {% for i in courses.paginator.page_range %}
+                {% if i == courses.number %}
+                    <a href="?page={{ i }}"><b>{{ i }}</b></a>
+                {% else %}
+                    <a href="?page={{ i }}">{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+            <a href="?page={{ courses.paginator.num_pages }}">&raquo;</a>
+        </div>
+        {% endif %}
+    </div>
+    {% if user.is_authenticated and user.is_superuser and courses %}
+    <div class="empty-box">
+        <a class="btn btn-primary" href="{% url 'course_add' pk=program.pk %}">Add course</a>
+    </div>
+    <!-- <i class="material-icons">add</i>  -->
+    {% endif %}
+</div>
+{% endblock %}

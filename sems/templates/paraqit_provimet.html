@@ -1,0 +1,95 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 col-xs-12">
+			<div class="no-shade card-box">
+				<form method="get" class="form-spaced fixed-width">
+					<label for="program">
+						<span class="faded">Programi</span><br>
+						<input class="form-control" type="text" name="program" value="{{ program.name }}" readonly="">
+					</label>
+					<label for="year">
+						<span class="faded">Viti</span><br>
+						<select name="year" id="year" class="form-control">
+							{% for i in '1234' %}
+							<option {% if request.GET.year == i %}selected=""{% endif %} value="{{ i }}">{{ i }}</option>
+							{% endfor %}
+						</select>
+					</label>
+					<label for="semester">
+						<span class="faded">Semestri</span><br>
+						<select name="semester" id="semester" class="form-control">
+							{% for i in '12345678' %}
+							<option {% if request.GET.semester == i %}selected=""{% endif %} value="{{ i }}">{{ i }}</option>
+							{% endfor %}
+						</select>
+					</label>
+					{% if afatet %}
+					<label for="afati">
+						<span class="faded">Afati</span><br>
+						<select name="afati" id="afati" class="form-control">
+							<option value="-1">Zgjedh afatin</option>
+							{% for a in afatet %}
+							<option {% if request.GET.afati == a.pk|toStr %}selected=""{% endif %} value="{{ a.pk|toInt }}">{{ a.emri }}</option>
+							{% endfor %}
+						</select>
+					</label>
+					{% endif %}
+					<input type="submit" name="filter" value="filtro" class="btn btn-primary">
+				</form>
+			</div>
+			<div class="card-box">
+				<h6>Zgjedh lëndët</h6>
+				{% if afatet %}
+				{% if courses and request.GET.afati|toInt > -1 %}
+				<table>
+					<thead>
+						<tr>
+							<th style="max-width: 50px">Tipi</th>
+							<th>Emri i lendes</th>
+							<th>Ligjeruesi</th>
+							<th>Paraqitur</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for course in courses %}
+						<tr>
+							<td style="max-width: 50px">{{ course.get_type }}</td>
+							<td>{{ course.name }}</td>
+							<td>
+								{% for t in course.course_teacher.all %}
+								{{ t }}<br>
+								{% endfor %}
+							</td>
+							<td>{{ course.hera }}</td>
+							<td class="text-right"><a href="{% url 'paraqit_provimin' c_pk=course.pk a_pk=request.GET.afati|toInt %}" class="btn-sm btn btn-primary">Paraqit</a></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				{% else %}
+				<p class="lead"><br>Nuk ka lende ne te dhenat e kerkuara</p><br>
+				{% endif %}
+				{% else %}
+					<p class="text-danger">Afati per paraqitje te provimeve ka perfunduar</p>
+				{% endif %}
+			</div>
+			<div class="empty-box">
+				<a href="{% url 'provimet_paraqitura' %}" class="btn btn-primary">Provimet e paraqitura</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+{% load static %}
+<script src="{% static 'js/ajax.js' %}"></script>
+{% endblock %}
+
+<!-- <td class="text-right"><span class="status {% if p.status == 0 %}orange{% elif p.status == 1 %}green{% else %}red{% endif %}">{{ p.get_status_display }}</span></td> -->

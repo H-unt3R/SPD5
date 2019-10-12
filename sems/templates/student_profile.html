@@ -1,0 +1,153 @@
+{% extends 'base_generic.html' %}
+
+
+{% block content %}
+
+{% if user.is_superuser or user.student == student %}
+<div class="abs-popup">
+    <div class="no-shade card-box grades">
+        <!-- <h5>Success</h5><br/> -->
+        <a onclick="toggleGrades()" class="toggleBtn btn btn-danger"><i class="fas fa-times"></i> Close</a><br><br>
+        <table>
+            <thead>
+                <th>Course</th>
+                <th>Grade</th>
+            </thead>
+            <tbody>
+                {% if success %}
+                {% for grade in success %}
+                <tr>
+                    <td>{{ grade.course }}</td>
+                    <td>{% if grade.grade >= 5 %}{{ grade.grade }}{% else %}&mdash;{% endif %}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td>Empty dataset</td>
+                    <td></td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table><br>
+    </div>
+</div>
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="no-shade card-box">
+                <div class="row">
+                    <div class="col-md-3 col-xs-12 text-center">
+                        <div class="thumb img-round">
+                            <img src="../static/uploads/{% if student.picture %}{{ student.picture }} {% else %}no-img.png {% endif %}" />
+                        </div>
+                        {% if user.is_authenticated %}
+                        {% if user.student.pk == student.pk or user.is_superuser %}
+                        <div class="text-left">
+                            <br/>
+                            <a class="btn btn-primary" style="display: block" href="{% url 'user_edit' pk=student.pk %}"><i class="material-icons">edit</i>Edit</a><br/>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-9 col-xs-12">
+                        <h3>{{ student.first_name }} {{ student.last_name }}</h3>
+                        <small class="faded lead">
+                            {{ student.get_level_display }} &mdash;
+                            <a href="{% url 'program_single' pk=student.program.pk %}" class="text-primary">{{ student.program }}</a>
+                        </small>
+                        <!-- <br>Semestri: {{ student.semester }}<br> -->
+                        <hr/>
+                        <!--<br/>-->
+                        <div><span class="sm-label label text-primary"><i class="fas fa-map-marker"></i></span> {{ student.city }}, {{ student.country }}</div><br/>
+                        <div><span class="sm-label label text-primary"><i class="fas fa-envelope"></i></span> {{ student.email }}</div>
+                        {% if student.website %}
+                        <br/>
+                        <div><span class="sm-label label text-primary"><i class="fas fa-link"></i></span> <a href="{{ student.get_website }}" title="{{ student.get_website }}" target="_blank">{{ student.website }}</a> </div>
+                        {% endif %}
+                        <hr/>
+                        <h5>Enrolled Courses</h5>
+                        {% if student.course.all %}
+                            {% if student.course.all|length > 8 %}
+                            <div class="hide">
+                                <div class="white-shadow">
+                                    <div onclick="showCourses(this)" id="trigger">Expand <i class="fas fa-angle-down"></i></div>
+                                </div>
+                            {% endif %}
+                                {% for course in student.course.all %}
+                                <a class="label" href="{% url 'course_detail' pk=course.pk %}" title="{{ course.summary }}">{{ course }}</a>
+                                {% endfor %}
+                            {% if student.course.all|length > 8 %}
+                            </div>
+                            {% endif %}
+                            {% else %}
+                        <b class="text-danger">No courses</b>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if user.is_superuser or user.student == student %}
+            <div class="empty-box text-left">
+                <a onclick="toggleGrades()" class="toggleBtn btn btn-primary">Shiko notat</a>
+                <a class="float-right btn btn-primary" href="{% url 'provimet' %}">Paraqit provimet</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-4 col-xs-12">
+            <div class="card-box">
+                <h6>Overview</h6>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Average Grade</td>
+                            <td>{{ details.grade__avg|floatformat:-2 }}</td>
+                        </tr>
+                        <tr>
+                            <td>Highest Grade</td>
+                            <td>{% if not details.grade__max %}&mdash;{% else %}{{ details.grade__max }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td>Lowest Grade</td>
+                            <td>{% if not details.grade__min %}&mdash;{% else %}{{ details.grade__min }}{% endif %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+<script>
+    var visible = false;
+    var collapsed = true;
+
+    function toggleGrades() {
+        if (visible) {
+            $('.abs-popup').hide()
+        } else {
+            $('.abs-popup').show();
+            $('.abs-popup').css('display', 'flex');
+        }
+        visible = !visible;
+    }
+
+    function showCourses(btn) {
+        var btn = $(btn);
+
+        if (collapsed) {
+            btn.html("Collapse <i class=\"fas fa-angle-up\"></i>");
+            $(".hide").css("max-height", "unset");
+            $(".white-shadow").css({"background": "unset", "z-index": "0"});
+        } else {
+            btn.html("Expand <i class=\"fas fa-angle-down\"></i>");
+            $(".hide").css("max-height", "150");
+            $(".white-shadow").css({"background": "linear-gradient(transparent 50%, rgba(255,255,255,.8) 80%)", "z-index": "2"});
+        }
+        collapsed = !collapsed;
+    }
+</script>
+{% endblock %}
