@@ -1,4 +1,5 @@
 from django.urls import include, path, re_path
+from django.conf.urls import include, url
 from . import views
 
 urlpatterns = [
@@ -42,6 +43,7 @@ urlpatterns = [
     path('provimet/paraqitura/', views.provimet_paraqitura, name='provimet_paraqitura'),
     path('administrator/<int:afat_extra>', views.admin_view, name='administrator'),
     path('afati/delete/<int:pk>', views.delete_afat, name='delete_afat'),
+    url(r"^schedule/$", views.schedule, name='schedule'),
 
     # path('ajax/update/teacher/', views.update_teacher, name='update_teacher'),
 ]

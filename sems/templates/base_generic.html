@@ -25,6 +25,7 @@
                             {% url 'home' as hom %} {% url 'students' as acc %} {% url 'programs' as prog %} {% url 'login' as log %} {% url 'student_detail' pk=user.student.pk as sd %}
                             <a href="{% url 'home' %}" {% if request.path == hom %} class="active" {% endif %}>Home</a>
                             <a href="{% url 'students' %}" {% if request.path == acc %} class="active" {% endif %}>Accounts</a>
+                            <a href="{% url 'schedule' %}"> Schedule </a>
                             <a href="{% url 'programs' %}" {% if request.path == prog %} class="active" {% endif %}>Courses</a>
                             <div>
                                 {% if not user.is_authenticated %}

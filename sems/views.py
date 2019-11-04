@@ -654,3 +654,7 @@ def paraqit_provimin(request, c_pk, a_pk):
     provimet.save()
 
     return redirect('provimet')
+
+
+def schedule(request):
+    return render(request, 'schedule.html')
