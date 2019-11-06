@@ -7,9 +7,9 @@ from django.db.models.signals import post_save
 
 
 STATUS = (
-    (0, 'Ne progres'), 
-    (1, 'Aprovuar'),
-    (2, 'Refuzuar'),
+    (0, 'No progress'),
+    (1, 'Approved'),
+    (2, 'Rejected'),
 )
 
 DAYS = (
@@ -17,20 +17,49 @@ DAYS = (
 )
 
 MONTHS = (
-    (1, 'Janar'),
-    (2, 'Shkurt'),
-    (3, 'Mars'),
-    (4, 'Prill'),
-    (5, 'Maj'),
-    (6, 'Qershor'),
-    (7, 'Korrik'),
-    (8, 'Gusht'),
-    (9, 'Shtator'),
-    (10, 'Tetor'),
-    (11, 'Nentor'),
-    (12, 'Dhjetor'),
+    (1, 'January'),
+    (2, 'February'),
+    (3, 'March'),
+    (4, 'April'),
+    (5, 'May'),
+    (6, 'June'),
+    (7, 'July'),
+    (8, 'August'),
+    (9, 'September'),
+    (10, 'October'),
+    (11, 'November'),
+    (12, 'December'),
 )
 
+start_time = (
+    ('9:00', '9:00'),
+    ('10:00', '10:00'),
+    ('11:00', '11:00'),
+    ('12:10', '12:10'),
+    ('13:10', '13:10'),
+    ('14:10', '14:10'),
+    ('15:10', '15:10'),
+    ('16:10', '16:10'),
+    ('17:20', '17:20'),
+    ('18:30', '18:30'),
+    ('19:30', '19:30'),
+    ('20:20', '20:20'),
+)
+
+end_time = (
+    ('9:50', '9:50'),
+    ('10:50', '10:50'),
+    ('11:50', '11:50'),
+    ('13:00', '13:00'),
+    ('14:00', '14:00'),
+    ('15:00', '15:00'),
+    ('16:00', '16:00'),
+    ('17:00', '17:00'),
+    ('18:10', '18:10'),
+    ('19:20', '19:20'),
+    ('20:20', '20:20'),
+    ('21:20', '21:20'),
+)
 
 YEARS = (
         (1, '1'),
@@ -218,3 +247,10 @@ class Provimet(models.Model):
             return self.student.student.first_name + ' ' + self.student.student.last_name + ' - ' + self.afati.emri + ' - ' + self.course.name
         else:
             return 'Student' + ' - ' + self.afati.emri
+
+
+class Schedule(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=False)
+    start_time = models.CharField(max_length=5, choices=start_time)
+    end_time = models.CharField(max_length=5, choices=end_time)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
