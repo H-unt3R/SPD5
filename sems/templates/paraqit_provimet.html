@@ -8,11 +8,11 @@
 			<div class="no-shade card-box">
 				<form method="get" class="form-spaced fixed-width">
 					<label for="program">
-						<span class="faded">Programi</span><br>
+						<span class="faded">Programs</span><br>
 						<input class="form-control" type="text" name="program" value="{{ program.name }}" readonly="">
 					</label>
 					<label for="year">
-						<span class="faded">Viti</span><br>
+						<span class="faded">Year</span><br>
 						<select name="year" id="year" class="form-control">
 							{% for i in '1234' %}
 							<option {% if request.GET.year == i %}selected=""{% endif %} value="{{ i }}">{{ i }}</option>
@@ -20,7 +20,7 @@
 						</select>
 					</label>
 					<label for="semester">
-						<span class="faded">Semestri</span><br>
+						<span class="faded">Semester</span><br>
 						<select name="semester" id="semester" class="form-control">
 							{% for i in '12345678' %}
 							<option {% if request.GET.semester == i %}selected=""{% endif %} value="{{ i }}">{{ i }}</option>
@@ -29,9 +29,9 @@
 					</label>
 					{% if afatet %}
 					<label for="afati">
-						<span class="faded">Afati</span><br>
+						<span class="faded">Deadline</span><br>
 						<select name="afati" id="afati" class="form-control">
-							<option value="-1">Zgjedh afatin</option>
+							<option value="-1">Choose the deadline</option>
 							{% for a in afatet %}
 							<option {% if request.GET.afati == a.pk|toStr %}selected=""{% endif %} value="{{ a.pk|toInt }}">{{ a.emri }}</option>
 							{% endfor %}
@@ -42,16 +42,16 @@
 				</form>
 			</div>
 			<div class="card-box">
-				<h6>Zgjedh lëndët</h6>
+				<h6>Selects the subjects</h6>
 				{% if afatet %}
 				{% if courses and request.GET.afati|toInt > -1 %}
 				<table>
 					<thead>
 						<tr>
-							<th style="max-width: 50px">Tipi</th>
-							<th>Emri i lendes</th>
-							<th>Ligjeruesi</th>
-							<th>Paraqitur</th>
+							<th style="max-width: 50px">Types</th>
+							<th>Subject</th>
+							<th>Lecturer</th>
+							<th>Presented</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -72,14 +72,14 @@
 					</tbody>
 				</table>
 				{% else %}
-				<p class="lead"><br>Nuk ka lende ne te dhenat e kerkuara</p><br>
+				<p class="lead"><br>There is no subject in the required data</p><br>
 				{% endif %}
 				{% else %}
-					<p class="text-danger">Afati per paraqitje te provimeve ka perfunduar</p>
+					<p class="text-danger">The exam deadline has expired</p>
 				{% endif %}
 			</div>
 			<div class="empty-box">
-				<a href="{% url 'provimet_paraqitura' %}" class="btn btn-primary">Provimet e paraqitura</a>
+				<a href="{% url 'provimet_paraqitura' %}" class="btn btn-primary">The exams presented</a>
 			</div>
 		</div>
 	</div>

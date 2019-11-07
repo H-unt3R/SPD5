@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-md-6 col-xs-12">
             <div class="card-box">
-                <h6>Afatet e Provimeve</h6>
-                <small class="faded">Afatet per paraqitjen e provimeve</small>
+                <h6>Exam deadlines</h6>
+                <small class="faded">Deadlines for submitting exams</small>
                 <hr>
                 <!-- <br> -->
                 <form method="post">
@@ -12,8 +12,8 @@
                     <table>
                         <thead>
                             <tr>
-                                <th style="max-width: 40px">Aktiv</th>
-                                <th>Emri</th>
+                                <th style="max-width: 40px">Active</th>
+                                <th>Name</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -23,17 +23,17 @@
                             <tr>
                                 <td style="max-width: 40px" class="text-center">{{ form.aktiv }}</td>
                                 <td>{{ form.emri }}</td>
-                                <td class="text-center">{% if form.id.value %}<small><a class="text-danger" href="{% url 'delete_afat' pk=form.id.value %}">Fshije</a></small>{% endif %}</td>
+                                <td class="text-center">{% if form.id.value %}<small><a class="text-danger" href="{% url 'delete_afat' pk=form.id.value %}">Clear</a></small>{% endif %}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                     {% if formset|length == 0 %}
-                    <p class="lead">Asnje afat nuk u gjet</p>
+                    <p class="lead">No deadlines found</p>
                     {% endif %}
                     <br>
                     <a href="{% url 'administrator' afat_extra=extra|add:1 %}" class="float-right btn btn-primary">+</a>
-                    <input type="submit" value="Ruaj ndryshimet" class="float-left btn btn-primary">
+                    <input type="submit" value="Save the changes" class="float-left btn btn-primary">
                 </form>
             </div>
         </div>

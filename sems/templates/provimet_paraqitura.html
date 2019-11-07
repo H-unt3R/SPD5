@@ -8,7 +8,7 @@
 			<div class="no-shade card-box">
 				<form method="get" class="float-right form-inline">
 					<select style="min-width: 300px; margin-right: 10px" name="afati" class="form-control">
-						<option value="-1">Zgjedh afatin</option>
+						<option value="-1">Choose the deadline</option>
 						{% for a in afatetAll %}
 						<option value="{{ a.pk }}">{{ a.emri }}</option>
 						{% endfor %}
@@ -17,15 +17,15 @@
 				</form>
 			</div>
 			<div class="card-box">
-				<h6>Provimet e paraqitura</h6>
+				<h6>The exams presented</h6>
 				{% if provimet %}
 				<table>
 					<thead>
 						<tr>
-							<th style="max-width: 50px">Tipi</th>
-							<th>Emri i lendes</th>
-							<th>Ligjeruesi</th>
-							<th>Nota</th>
+							<th style="max-width: 50px">Types</th>
+							<th>Subject</th>
+							<th>Lecturer</th>
+							<th>Note</th>
 							<!-- <th>Hera<br/>Paraqitur</th> -->
 						</tr>
 					</thead>
@@ -43,9 +43,9 @@
 								<!-- <td>{{ p.hera }}</td> -->
 								<td style="min-width: 140px; max-width: 140px" class="text-right">
 									{% if p.course.pk|get_grade:request.user.pk >= 5 %}
-									<a href="#" class="no-float btn-sm btn btn-danger">Refuzo</a>
+									<a href="#" class="no-float btn-sm btn btn-danger">Reject</a>
 									{% endif %} 
-									<a href="#" class="no-float btn-sm btn btn-danger">Anulo</a>
+									<a href="#" class="no-float btn-sm btn btn-danger">Cancel</a>
 								</td>
 							</tr>
 						{% endfor %}
@@ -53,11 +53,11 @@
 				</table>
 				{% else %}
 				<br>
-				<p class="text-center lead text-danger">Nuk keni paraqitur provime ne afatin e zgjedhur</p><br>
+				<p class="text-center lead text-danger">You did not submit exams in the selected deadline</p><br>
 				{% endif %}
 			</div>
 			<div class="empty-box">
-				<a class="btn btn-primary" href="{% url 'provimet' %}">Paraqit provimet</a>
+				<a class="btn btn-primary" href="{% url 'provimet' %}">Submit exams</a>
 			</div>
 		</div>
 	</div>
