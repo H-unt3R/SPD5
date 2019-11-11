@@ -89,6 +89,16 @@ TYPES = (
     ('z', 'Zgjedhore'),
 )
 
+WEEK_DAYS = (
+    ('Monday', 'Monday'),
+    ('Tuesday', 'Tuesday'),
+    ('Wednesday', 'Wednesday'),
+    ('Thursday', 'Thursday'),
+    ('Friday', 'Friday'),
+    ('Saturday', 'Saturday'),
+    ('Sunday', 'Sunday'),
+)
+
 
 class Program(models.Model):
     name = models.CharField(max_length=150)
@@ -163,6 +173,7 @@ def create_profile(sender, **kwargs):
     if kwargs['created']:
         student = Student.objects.create(user=kwargs['instance'])
 
+
 post_save.connect(create_profile, sender=User)
 
 
@@ -177,7 +188,6 @@ class New(models.Model):
 
     def __str__(self):
         return self.title
-
 
 
 class Grade(models.Model):
@@ -214,11 +224,11 @@ class Upload(models.Model):
         return str(self.file)[6:]
 
 
-
 def get_full_name(self):
     if self.student.first_name and self.student.last_name:
         return self.student.first_name + ' ' + self.student.last_name
     return self.username
+
 
 User.add_to_class("__str__", get_full_name)
 
@@ -254,3 +264,4 @@ class Schedule(models.Model):
     start_time = models.CharField(max_length=5, choices=start_time)
     end_time = models.CharField(max_length=5, choices=end_time)
     student = models.ForeignKey(User, on_delete=models.CASCADE)
+    day = models.CharField(max_length=10, choices=WEEK_DAYS, default='Monday')

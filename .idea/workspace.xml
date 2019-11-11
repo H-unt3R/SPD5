@@ -4,6 +4,9 @@
     <list default="true" id="bac553b7-62e4-41a0-b5b8-43e41c81f3b9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sems/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/sems/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sems/templates/schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/sems/templates/schedule.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sems/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/sems/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -412,7 +415,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

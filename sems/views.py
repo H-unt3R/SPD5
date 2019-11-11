@@ -2,7 +2,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse, HttpResponse
 from django.shortcuts import redirect
-from .models import Course, Program, User, Upload, Student, New, Grade, afatet_provimeve, Provimet
+from .models import Course, Program, User, Upload, Student, New, Grade, afatet_provimeve, Provimet, Schedule
 from django.contrib.auth.models import User, Group
 from elearning import settings
 from django.db.models import Sum, Avg, Max, Min, Count
@@ -657,4 +657,8 @@ def paraqit_provimin(request, c_pk, a_pk):
 
 
 def schedule(request):
-    return render(request, 'schedule.html')
+    sch = Schedule.objects.all()
+    ctx = {
+        "schedule": sch,
+    }
+    return render(request, 'schedule.html', ctx)
