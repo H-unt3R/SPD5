@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bac553b7-62e4-41a0-b5b8-43e41c81f3b9" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/elearning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/elearning.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sems/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/sems/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sems/templates/schedule.html" beforeDir="false" afterPath="$PROJECT_DIR$/sems/templates/schedule.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sems/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/sems/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sems/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/sems/forms.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,46 +21,6 @@
         <option value="HTML File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>sidebar</find>
-      <find>tabe</find>
-      <find>media_</find>
-      <find>decoration: none</find>
-      <find>s.</find>
-      <find>.shadow-</find>
-      <find>273c75</find>
-      <find>34beed</find>
-      <find>core</find>
-      <find>User</find>
-      <find>img-round</find>
-      <find>.btn-or</find>
-      <find>hover</find>
-      <find>.btn</find>
-      <find>.img-round</find>
-      <find>.btnpr</find>
-      <find>shadow-</find>
-      <find>.box</find>
-      <find>.form-bo</find>
-      <find>.btn {</find>
-      <find>.img-r</find>
-      <find>.form-cont</find>
-      <find>.card-bo</find>
-      <find>.card-b</find>
-      <find>.btn-</find>
-      <find>.card</find>
-      <find>.thumb</find>
-      <find>getlist</find>
-      <find>.form-contro</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>student.</replace>
-      <replace>34beed</replace>
-      <replace>f67280</replace>
-      <replace>settings.User</replace>
-      <replace>Student</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -79,7 +39,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">

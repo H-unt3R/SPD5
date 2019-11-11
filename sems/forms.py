@@ -3,7 +3,7 @@ from .models import Upload, Student, New, Grade, Course, Program, afatet_provime
 from django.contrib.auth.models import User
 from django.forms import CharField
 
-# Upload files to specific course
+
 class UploadFormFile(forms.ModelForm):
     class Meta:
         model = Upload
@@ -17,13 +17,11 @@ class UploadFormFile(forms.ModelForm):
 # Add/Edit User profile
 class UpdateProfile(forms.ModelForm):
 
-    # course = forms.ModelMultipleChoiceField(queryset=Course.objects.all(), widget=forms.CheckboxSelectMultiple)
-
     is_super = forms.BooleanField(required=False)
 
     class Meta:
         model = Student
-        fields = ('first_name', 'last_name', 'email', 'course', 'program', 'country', 'city', 'picture', 'website', 'user', )
+        fields = ('first_name', 'last_name', 'email', 'course', 'program', 'country', 'city', 'picture', 'website', 'user')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -43,7 +41,6 @@ class SignUpForm(forms.Form):
     username = forms.CharField()
     password1 = forms.CharField(widget = forms.PasswordInput())
     password2 = forms.CharField(widget = forms.PasswordInput())
-    
 
     def clean_username(self):
         try:
@@ -51,7 +48,6 @@ class SignUpForm(forms.Form):
             raise forms.ValidationError('User already exists')
         except User.DoesNotExist:
             return self.username
-
 
     def clean_password(self):
         pw1 = self.cleaned_data.get('password1')
@@ -88,25 +84,19 @@ class AddPostForm(forms.ModelForm):
 
 class GradeStudentsForm(forms.ModelForm):
 
-    # student = forms.ChoiceField(choices=[(s.pk, s.first_name + ' ' + s.last_name) for s in Student.objects.all()])
-
     class Meta:
         model = Grade
         fields = ('student', 'grade', )
 
     def __init__(self, *args, **kwargs):
         super(GradeStudentsForm, self).__init__(*args, **kwargs)
-        # if course:
-            # self.fields['student'].widget = forms.ChoiceField(choices=[(s.pk, s.first_name) for s in Student.objects.all()])
-        # self.fields['student'].widget = forms.ChoiceField(queryset=Student.objects.values_list('pk', 'first_name'))
         self.fields['student'].widget.attrs.update({'class': 'form-control'})
         self.fields['grade'].widget.attrs.update({'class': 'form-control'})
 
 
-
-
 class DateInput(forms.DateInput):
     input_type = 'date'
+
 
 class CourseAddForm(forms.ModelForm):
 
@@ -143,37 +133,13 @@ class ProgramForm(forms.ModelForm):
         self.fields['summary'].widget.attrs.update({'class': 'form-control'})
 
 
-
 class AfatetForm(forms.ModelForm):
 
     class Meta:
         model = afatet_provimeve
         fields = '__all__'
-        # widgets = {
-        #     'prej': DateInput(),
-        #     'deri': DateInput()
-        # }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['emri'].widget.attrs.update({'class': 'form-control'})
 
-            
-
-# class LendetForm(forms.ModelForm):
-
-#     class Meta:
-#         model = ProvimetMundshme
-#         fields = '__all__'
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['program'].widget.attrs.update({'class': 'form-control', 'data-type': 'program-listener'})
-#         self.fields['semester'].widget.attrs.update({'class': 'form-control'})
-#         self.fields['year'].widget.attrs.update({'class': 'form-control'})
-#         self.fields['level'].widget.attrs.update({'class': 'form-control'})
-
-#     course = forms.MultipleChoiceField(
-#         widget=forms.CheckboxSelectMultiple,
-#         choices=[(c.pk, c.name) for c in Course.objects.all()],
-#     )
