@@ -31,9 +31,9 @@
                     </div>
                 </div>
                 <div class="empty-box">
-                    <input type="submit" name="submit" class="btn btn-primary" value="Ruaj" />
-                    <input type="submit" name="submit" class="btn btn-primary" value="Ruaj dhe shto te ri"/>
-                    <a href="#" class="no-float btn btn-danger">Anulo</a>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Save" />
+                    <input type="submit" name="submit" class="btn btn-primary" value="Save and add new"/>
+                    <a href="#" class="no-float btn btn-danger">Cancel</a>
                 </div>
             </div>
             {% url 'course_add' pk=program as add_course %}
@@ -63,19 +63,19 @@
                         {{ form.program }}
                     </div>
                     <div class="form-group">
-                        <span class="faded">Niveli</span> {{ form.level }}
+                        <span class="faded">Level</span> {{ form.level }}
                     </div>
                     <div class="form-group">
-                        <span class="faded">Viti</span> {{ form.year }}
+                        <span class="faded">Year</span> {{ form.year }}
                     </div>
                     <div class="form-group">
-                        <span class="faded">Semetri</span> {{ form.semester }}
+                        <span class="faded">Semester</span> {{ form.semester }}
                     </div>
                 </div>
                 <div class="card-box">
-                    <h6>Lloji i lendes</h6>
+                    <h6>Type of case</h6>
                     <label>
-                        {{ form.obligative }} Obligative
+                        {{ form.obligative }} Mandatory
                     </label>
                 </div>
             </div>
