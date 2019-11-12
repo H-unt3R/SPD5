@@ -38,7 +38,7 @@
 						</select>
 					</label>
 					{% endif %}
-					<input type="submit" name="filter" value="filtro" class="btn btn-primary">
+					<input type="submit" name="filter" value="Filter" class="btn btn-primary">
 				</form>
 			</div>
 			<div class="card-box">
@@ -66,7 +66,7 @@
 								{% endfor %}
 							</td>
 							<td>{{ course.hera }}</td>
-							<td class="text-right"><a href="{% url 'paraqit_provimin' c_pk=course.pk a_pk=request.GET.afati|toInt %}" class="btn-sm btn btn-primary">Paraqit</a></td>
+							<td class="text-right"><a href="{% url 'paraqit_provimin' c_pk=course.pk a_pk=request.GET.afati|toInt %}" class="btn-sm btn btn-primary">Submit</a></td>
 						</tr>
 						{% endfor %}
 					</tbody>
