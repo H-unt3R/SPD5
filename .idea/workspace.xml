@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bac553b7-62e4-41a0-b5b8-43e41c81f3b9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/elearning.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/elearning.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sems/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/sems/forms.py" afterDir="false" />
-    </list>
+    <list default="true" id="bac553b7-62e4-41a0-b5b8-43e41c81f3b9" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +19,6 @@
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="260" />
-    <option name="y" value="55" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
   </component>
   <component name="ProjectId" id="1TMuZweGrckFJAapf6jn21tancK" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
